@@ -1,0 +1,24 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
+  port: <%= ENV['MYSQL_PORT'] %>
+
+development:
+  <<: *default
+  database: docker_rails2_development
+
+staging:
+  <<: *default
+  database: docker_rails2_staging
+
+test:
+  <<: *default
+  database: docker_rails2_test
+
+production:
+  <<: *default
+  database: docker_rails2_production
