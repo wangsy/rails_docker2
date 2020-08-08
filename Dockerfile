@@ -38,7 +38,7 @@ COPY Gemfile ${APP_HOME}/Gemfile
 COPY Gemfile.lock ${APP_HOME}/Gemfile.lock
 
 # Make sure we are running bundler version 2.0
-RUN gem install bundler -v 2.0.1
+RUN gem install bundler -v 2.1.4
 RUN bundle install
 
 # Copy the project over
