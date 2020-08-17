@@ -4,6 +4,10 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: the-greatest-root-password-ever
+
+  redis:
+    image: redis:latest
+
   web:
     depends_on:
       - db
@@ -17,8 +21,24 @@ services:
       MYSQL_HOST: db
       RAILS_ENV: development
       RAILS_MAX_THREADS: 5
+      REDIS_URL: redis://redis:6379/0
     volumes:
       - ".:/app"
+  
+  sidekiq:
+    depends_on:
+      - db
+      - redis
+    build: .
+    entrypoint: ["sh","entrypoint-sidekiq.sh"]
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: the-greatest-root-password-ever
+      MYSQL_PORT: 3306
+      MYSQL_HOST: db
+      RAILS_ENV: development
+      RAILS_MAX_THREADS: 5
+      REDIS_URL: redis://redis:6379/0
 
 volumes:
   db:
