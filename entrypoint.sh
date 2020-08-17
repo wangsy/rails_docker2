@@ -2,7 +2,7 @@
 
 # Precompile assets
 yarn install
-bundle exec rake assets:precompile
+bundle exec rails assets:precompile
 
 # Wait for database to be ready
 until nc -z -v -w30 $MYSQL_HOST $MYSQL_PORT; do
