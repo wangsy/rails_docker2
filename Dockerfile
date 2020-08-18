@@ -43,7 +43,4 @@ RUN bundle install
 # Copy the project over
 COPY . ${APP_HOME}
 
-# Map port 8080 to the outside world (your local computer)
-EXPOSE 8080
-
 ENTRYPOINT ["sh", "./entrypoint.sh"]
