@@ -39,6 +39,26 @@ services:
       RAILS_ENV: development
       RAILS_MAX_THREADS: 5
       REDIS_URL: redis://redis:6379/0
-
+    volumes:
+      - ".:/app"
+  
+  
+  cron_job:
+    depends_on:
+      - db
+      - redis
+    build: .
+    entrypoint: ["sh","entrypoint-cron.sh"]
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: the-greatest-root-password-ever
+      MYSQL_PORT: 3306
+      MYSQL_HOST: db
+      RAILS_ENV: development
+      RAILS_MAX_THREADS: 5
+      REDIS_URL: redis://redis:6379/0
+    volumes:
+      - ".:/app"
+    
 volumes:
   db:

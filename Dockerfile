@@ -13,7 +13,7 @@ RUN apt-get install -y \
     build-essential \
     ca-certificates \
     netcat-traditional \
-    vim \
+    cron \
     default-mysql-client \
     default-libmysqlclient-dev
 
